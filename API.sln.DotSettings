@@ -1,0 +1,37 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=791162066B26BA48AEBA67BEDA61D740/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=791162066B26BA48AEBA67BEDA61D740/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=791162066B26BA48AEBA67BEDA61D740/Description/@EntryValue">Log Debug</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=791162066B26BA48AEBA67BEDA61D740/Field/=log/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=791162066B26BA48AEBA67BEDA61D740/Field/=log/Expression/@EntryValue">variableOfType("Common.Logging.ILog")</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=791162066B26BA48AEBA67BEDA61D740/Field/=log/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=791162066B26BA48AEBA67BEDA61D740/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=791162066B26BA48AEBA67BEDA61D740/Scope/=2C285F182AC98D44B0B4F29D4D2149EC/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=791162066B26BA48AEBA67BEDA61D740/Scope/=2C285F182AC98D44B0B4F29D4D2149EC/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=791162066B26BA48AEBA67BEDA61D740/Scope/=2C285F182AC98D44B0B4F29D4D2149EC/Type/@EntryValue">InCSharpStatement</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=791162066B26BA48AEBA67BEDA61D740/Shortcut/@EntryValue">logd</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=791162066B26BA48AEBA67BEDA61D740/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=791162066B26BA48AEBA67BEDA61D740/Text/@EntryValue">$log$.Debug(m =&gt; m("$END$"));</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D896369D1120E5488805EB32A627F9C8/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D896369D1120E5488805EB32A627F9C8/Shortcut/@EntryValue">lic</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D896369D1120E5488805EB32A627F9C8/Description/@EntryValue">License header</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D896369D1120E5488805EB32A627F9C8/Text/@EntryValue">//Copyright (C) 2011 Bellevue College and Peninsula College&#xD;
+//&#xD;
+//This program is free software: you can redistribute it and/or modify&#xD;
+//it under the terms of the GNU Lesser General Public License as&#xD;
+//published by the Free Software Foundation, either version 3 of the&#xD;
+//License, or (at your option) any later version.&#xD;
+//&#xD;
+//This program is distributed in the hope that it will be useful,&#xD;
+//but WITHOUT ANY WARRANTY; without even the implied warranty of&#xD;
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#xD;
+//GNU Lesser General Public License for more details.&#xD;
+//&#xD;
+//You should have received a copy of the GNU Lesser General Public&#xD;
+//License and GNU General Public License along with this program.&#xD;
+//If not, see &lt;http://www.gnu.org/licenses/&gt;.&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D896369D1120E5488805EB32A627F9C8/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D896369D1120E5488805EB32A627F9C8/Scope/=558F05AA0DE96347816FF785232CFB2A/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D896369D1120E5488805EB32A627F9C8/Scope/=558F05AA0DE96347816FF785232CFB2A/Type/@EntryValue">InCSharpTypeAndNamespace</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D896369D1120E5488805EB32A627F9C8/Scope/=558F05AA0DE96347816FF785232CFB2A/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String></wpf:ResourceDictionary>
