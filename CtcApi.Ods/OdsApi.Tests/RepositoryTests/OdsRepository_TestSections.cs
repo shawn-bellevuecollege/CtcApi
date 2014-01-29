@@ -89,7 +89,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSections_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Section> sections = repository.GetSections(TestHelper.GetFacets());
 
@@ -109,7 +109,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSections_VerifyInstructor()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Section> sections = repository.GetSections(CourseID.FromString("ENGL", "101"));
 
@@ -133,7 +133,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSections_VerifyCourseDescriptions()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Section> sections = repository.GetSections(TestHelper.GetFacets());
 				Assert.IsTrue(sections.Count > 0);
@@ -146,7 +146,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSections_VerifyWaitlist()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Section> sections = repository.GetSections(TestHelper.GetFacets());
 
@@ -160,7 +160,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSections_VerifySortedByYearQuarterID()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Section> sections = repository.GetSections(TestHelper.GetFacets());
 				string prevYrq = "0000";
@@ -179,7 +179,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSections_VerifySortedByCourseID()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Section> sections = repository.GetSections("ENGL", YearQuarter.FromString("B122"));
 				string prevCourseID = "    ";
@@ -198,7 +198,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSections_VerifyCommonCourseCharacterRemovedFromCourseID()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Section> sections = repository.GetSections("ENGL", YearQuarter.FromString("B122"));
 
@@ -275,7 +275,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSectionsByYearQuarter_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				string yearQuarterId = "B012";
 				YearQuarter yrq = YearQuarter.FromString(yearQuarterId);
@@ -293,7 +293,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSectionsBySubject_WithQuarterFilter_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				YearQuarter yrq = YearQuarter.FromString("B122");
 				IList<Section> sections = repository.GetSections("ENGL", yrq);
@@ -309,7 +309,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSectionsBySubjectList_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<ISectionFacet> facets = TestHelper.GetFacets();
 
@@ -329,7 +329,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSectionsBySubjectList_OneSubject_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<ISectionFacet> facets = TestHelper.GetFacets();
 
@@ -348,7 +348,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSectionsBySubject_WithQuarterFilter_OnCampus_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				YearQuarter yrq = YearQuarter.FromString("B122");
 				IList<ISectionFacet> facets = new List<ISectionFacet>(1);
@@ -372,7 +372,7 @@ namespace Ctc.Ods.Tests
 			int sectionCount = 3;
 			IList<ISectionID> ids = _dataVerifier.GetSectionIDListFromQuery("english", sectionCount);
 
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Section> sections = repository.GetSections(ids, TestHelper.GetFacets());
 
@@ -389,7 +389,7 @@ namespace Ctc.Ods.Tests
 			IList<ICourseID> ids = _dataVerifier.GetCourseIDListFromQuery("stud", 3);
 			int expectedCount = ids.Count;
 
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Section> sections = repository.GetSections(ids, facetOptions: TestHelper.GetFacets());
 				int sectionCount = sections.Count;
@@ -405,7 +405,7 @@ namespace Ctc.Ods.Tests
 		public void GetSections_ByCourseIDCollection_WithYrq_Success()
 		{
 
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				YearQuarter yrq = repository.CurrentYearQuarter;
 
@@ -425,7 +425,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSectionsByCourseID_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Section> sections = repository.GetSections(CourseID.FromString("ART 101"), facetOptions: TestHelper.GetFacets());
 
@@ -439,7 +439,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSectionsByCourseID_WithYrq_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				YearQuarter yrq = YearQuarter.FromString("B012");
 				IList<Section> sections = repository.GetSections(CourseID.FromString("ART 101"), yrq);
@@ -455,9 +455,9 @@ namespace Ctc.Ods.Tests
 //		[Conditional("BC_ONLY")]
 		public void GetSectionsByCourseID_WithYrq_VerifyInstructorEmail()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
-				YearQuarter yrq = YearQuarter.FromString("B233");
+				YearQuarter yrq = YearQuarter.FromString("B343");
 				string courseId = "ART 101";
 
 				IList<Section> sections = repository.GetSections(CourseID.FromString(courseId), yrq, TestHelper.GetFacets());
@@ -474,7 +474,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSectionsBy_CourseID_Yrq_VerifyOffered()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				YearQuarter yrq = repository.CurrentYearQuarter;
 
@@ -550,7 +550,7 @@ namespace Ctc.Ods.Tests
 		{
 			IList<ISectionFacet> facets = TestHelper.GetFacets();
 
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Section> sections = repository.GetSections(facets);
 
@@ -584,7 +584,7 @@ namespace Ctc.Ods.Tests
 		{
 			IList<ISectionFacet> facets = TestHelper.GetFacets();
 
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Section> sections = repository.GetSections(facets);
 				IList<Section> continuousEnrollment = sections.Where(s => s.IsContinuousEnrollment).ToList();
@@ -600,7 +600,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSections_StartDateDifferentFromQuarter()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Section> sections = repository.GetSections(TestHelper.GetFacets());
 				Assert.IsTrue(sections.Count > 0, "No records were returned.");
@@ -620,7 +620,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetSections_EndDateDifferentFromQuarter()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Section> sections = repository.GetSections(TestHelper.GetFacets());
 				Assert.IsTrue(sections.Count > 0, "No records were returned.");
@@ -644,7 +644,7 @@ namespace Ctc.Ods.Tests
 		/// <param name="excludedSection"></param>
 		private void AssertExcludedSection(string excludedSection)
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Section> sections = repository.GetSections(TestHelper.GetFacets());
 				Assert.IsTrue(sections.Count > 0, "No Sections were returned.");

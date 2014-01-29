@@ -121,7 +121,7 @@ namespace Ctc.Ods.Tests.ClassDataFilterTests
 			facets.Add(new TimeFacet(new TimeSpan(0, 0, 0), new TimeSpan(23, 59, 0)));
 			facets.Add(new DaysFacet(DaysFacet.Options.All));
 
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				YearQuarter yrq = repository.CurrentYearQuarter;
 				

@@ -115,7 +115,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void CurrentYearQuarter_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				YearQuarter actual = repository.CurrentYearQuarter;
 
@@ -134,7 +134,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetRegistrationQuarters_CurrentAnd2More()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<YearQuarter> yrqList = repository.GetRegistrationQuarters(3);
 
@@ -162,7 +162,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetRegistrationQuarters()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<YearQuarter> yrqList = repository.GetRegistrationQuarters();
 
@@ -179,7 +179,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetFutureQuarters()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<YearQuarter> yrqList = repository.GetFutureQuarters();
 
@@ -196,7 +196,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetFutureQuarters_CurrentAnd2More()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<YearQuarter> yrqList = repository.GetFutureQuarters(3);
 
@@ -225,7 +225,7 @@ namespace Ctc.Ods.Tests
 		public void GetCourses_Success()
 		{
 			int count;
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				count = repository.GetCourses().Count();
 			}
@@ -239,7 +239,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetCourses_WithDescription_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Course> courses = repository.GetCourses();
 				int allCount = courses.Count;
@@ -261,7 +261,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetCourses_VerifyCcnFlag_True()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Course> courses = repository.GetCourses();
 				int expectedCount = _dataVerifier.GetCourseCount("CourseID like '%&%'");
@@ -276,7 +276,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetCourses_VerifyCcnFlag_False()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Course> courses = repository.GetCourses();
 				Course course = courses.Where(s => !(s.Subject.EndsWith("&"))).Take(1).Single();
@@ -291,7 +291,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetCourses_ByCourseID_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IEnumerable<ICourse> courses = repository.GetCourses(CourseID.FromString("art 101"));
 				Assert.IsNotNull(courses);
@@ -312,7 +312,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetCourses_ModalityTimes_Morning_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				VerifyModalityTimes("00:00", "11:59", repository);
 			}
@@ -324,7 +324,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetCourses_ModalityTimes_Afternoon_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				VerifyModalityTimes("12:00", "16:59", repository);
 			}
@@ -336,7 +336,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetCourses_ModalityTimes_Evening_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				VerifyModalityTimes("17:00", "23:59", repository);
 			}
@@ -348,7 +348,7 @@ namespace Ctc.Ods.Tests
 		/// <param name="start"></param>
 		/// <param name="end"></param>
 		/// <param name="repository"></param>
-		private void VerifyModalityTimes(string start, string end, OdsRepository repository)
+		private void VerifyModalityTimes(string start, string end, IOdsRepository repository)
 		{
 			TimeSpan startTime = TimeSpan.Parse(start);
 			TimeSpan endTime = TimeSpan.Parse(end);
@@ -368,7 +368,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetCourses_Modality_Online_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<ISectionFacet> facets = TestHelper.GetFacets(new ModalityFacet(ModalityFacet.Options.Online));
 
@@ -398,7 +398,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetCourses_Modality_Hybrid_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<ISectionFacet> facets = TestHelper.GetFacets(new ModalityFacet(ModalityFacet.Options.Hybrid));
 
@@ -426,7 +426,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetCourses_Modality_Telecourse_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<ISectionFacet> facets = TestHelper.GetFacets(new ModalityFacet(ModalityFacet.Options.Telecourse));
 
@@ -446,7 +446,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void GetCourses_Modality_OnCampus_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<ISectionFacet> facets = TestHelper.GetFacets(new ModalityFacet(ModalityFacet.Options.OnCampus));
 
@@ -469,7 +469,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void CourseDescription_CourseIDLookup_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IEnumerable<CourseDescription> courseDescriptions = repository.GetCourseDescription(CourseID.FromString("art 101"));
 				Assert.IsNotNull(courseDescriptions, "Method returned null");

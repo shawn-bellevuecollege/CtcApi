@@ -82,7 +82,7 @@ namespace Ctc.Ods.Tests
     [TestMethod]
     public void RetrievingPresentAndFutureDescriptions()
     {
-      using (OdsRepository ods = new OdsRepository())
+      using (IOdsRepository ods = new OdsRepository())
       {
         ICourseID courseID = CourseID.FromString("ECON&201");
         IList<CourseDescription> descs =  ods.GetCourseDescription(courseID, YearQuarter.FromString("B234"));

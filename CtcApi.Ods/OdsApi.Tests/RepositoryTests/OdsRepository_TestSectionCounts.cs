@@ -73,7 +73,7 @@ namespace Ctc.Ods.Tests.RepositoryTests
 		[TestMethod]
 		public void ForCourseID_CurrentRegistrationQuarter()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				ICourseID courseID = CourseID.FromString("ACCT 101");
 				YearQuarter yrq = repository.CurrentRegistrationQuarter;
@@ -89,7 +89,7 @@ namespace Ctc.Ods.Tests.RepositoryTests
 		[TestMethod]
 		public void ForCourseIDCommonCourse_CurrentRegistrationQuarter()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				ICourseID courseID = CourseID.FromString("ENGL& 101");
 				YearQuarter yrq = repository.CurrentRegistrationQuarter;
@@ -105,7 +105,7 @@ namespace Ctc.Ods.Tests.RepositoryTests
 		[TestMethod]
 		public void ForSubject_CurrentRegistrationQuarter()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				string subject = "ENGL";
 				YearQuarter yrq = repository.CurrentRegistrationQuarter;
@@ -121,7 +121,7 @@ namespace Ctc.Ods.Tests.RepositoryTests
 		[TestMethod]
 		public void ForSubjectCommonCourse_CurrentRegistrationQuarter()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				string subject = "ENGL&";
 				YearQuarter yrq = repository.CurrentRegistrationQuarter;

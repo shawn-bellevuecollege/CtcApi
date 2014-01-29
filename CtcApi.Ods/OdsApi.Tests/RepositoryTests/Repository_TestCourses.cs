@@ -111,7 +111,7 @@ namespace Ctc.Ods.Tests.RepositoryTests
 		[TestMethod]
 		public void GetCourses_VerifyCommonCourseCharacterRemovedFromCourseID()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Course> courses = repository.GetCourses("CHEM");
 
@@ -123,7 +123,7 @@ namespace Ctc.Ods.Tests.RepositoryTests
 		[TestMethod]
 		public void GetCourses_VerifySortedByCourseID()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Course> courses = repository.GetCourses("CHEM");
 				string prevCourseID = "    ";
@@ -154,7 +154,7 @@ namespace Ctc.Ods.Tests.RepositoryTests
 		[TestMethod]
 		public void GetCourses_VerifyIsVariableCredit()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<string> subjects = new List<string> {"ENGL", "ENGL&"};
 				IList<Course> courses = repository.GetCourses(subjects);
@@ -169,7 +169,7 @@ namespace Ctc.Ods.Tests.RepositoryTests
     [Ignore]  // specific research, not part of the standard test suite
     public void Research()
     {
-      using (OdsRepository repository = new OdsRepository())
+      using (IOdsRepository repository = new OdsRepository())
       {
         string courseId = "CEO 196";
         IList<Course> courses = repository.GetCourses(CourseID.FromString(courseId));
@@ -188,7 +188,7 @@ namespace Ctc.Ods.Tests.RepositoryTests
 		/// <param name="subject"></param>
 		private void AssertCourseCount(string subject)
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Course> courses = repository.GetCourses(subject);
 				Assert.IsTrue(courses.Count > 0, "No records were returned for '{0}'!", subject);
@@ -204,7 +204,7 @@ namespace Ctc.Ods.Tests.RepositoryTests
 		/// <param name="number"></param>
 		private void AssertCourseCount(string subject, string number)
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				ICourseID courseID = CourseID.FromString(subject, number);
 				IList<Course> courses = repository.GetCourses(courseID);
@@ -220,7 +220,7 @@ namespace Ctc.Ods.Tests.RepositoryTests
 		/// <param name="subjects"></param>
 		private void AssertCourseCount(IList<string> subjects)
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Course> courses = repository.GetCourses(subjects);
 				Assert.IsTrue(courses.Count > 0, "No records were returned for '{0}'!", subjects);

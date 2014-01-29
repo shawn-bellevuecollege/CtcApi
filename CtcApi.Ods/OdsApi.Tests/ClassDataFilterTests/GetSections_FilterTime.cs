@@ -127,7 +127,7 @@ namespace Ctc.Ods.Tests.ClassDataFilterTests
 		/// <param name="end"></param>
 		private void VerifyTimeFacet(string start, string end)
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				TimeSpan startTime = TimeSpan.Parse(start);
 				TimeSpan endTime = TimeSpan.Parse(end);

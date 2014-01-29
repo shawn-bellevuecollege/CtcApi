@@ -13,6 +13,8 @@
 //You should have received a copy of the GNU Lesser General Public
 //License and GNU General Public License along with this program.
 //If not, see <http://www.gnu.org/licenses/>.
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -83,7 +85,7 @@ namespace Ctc.Ods.Tests.RepositoryTests
 		[TestMethod]
 		public void GetSubjects()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<CoursePrefix> subjects = repository.GetCourseSubjects();
 				Assert.IsTrue(subjects.Count > 0);
@@ -96,7 +98,7 @@ namespace Ctc.Ods.Tests.RepositoryTests
 		[TestMethod]
 		public void GetSubjectsWithChar()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				char firstChar = 'b';
 				IList<CoursePrefix> actual = repository.GetCourseSubjects(firstChar);
@@ -116,7 +118,7 @@ namespace Ctc.Ods.Tests.RepositoryTests
 		[TestMethod]
 		public void GetSubjectsWithYQ_Success()
 		{
-			using (OdsRepository repo = new OdsRepository())
+			using (IOdsRepository repo = new OdsRepository())
 			{
 				YearQuarter yearQuarter = repo.CurrentYearQuarter;
 				IList<CoursePrefix> actual = repo.GetCourseSubjects(yearQuarter);
@@ -134,18 +136,17 @@ namespace Ctc.Ods.Tests.RepositoryTests
 		{
 			YearQuarter yrq = TestHelper.Data.YearQuarterWithSections;
 
-			using (OdsRepository repo = new OdsRepository())
+			using (IOdsRepository repo = new OdsRepository())
 			{
 				IList<CoursePrefix> actual = repo.GetCourseSubjects(yrq);
 				Assert.IsTrue(actual.Count > 0, "No subjects were returned for {0} ({1})", yrq.FriendlyName, yrq);
 
 				string subject = _dataVerifier.GetRandomCourseSubject(string.Format("YearQuarterID <> '{0}'", yrq.ID), true);
 
-				IEnumerable<CoursePrefix> shouldBeEmpty = actual.Where(s => s.Subject.ToUpper() == subject.ToUpper());
-				int emptyCount = shouldBeEmpty.Count();
-			  if (emptyCount > 0)
+        if (actual.Any(s => String.Equals(s.Subject, subject, StringComparison.CurrentCultureIgnoreCase)))
 			  {
-			    Assert.Fail("{0} found in {1} ({2})", emptyCount, yrq.FriendlyName, yrq);
+          int emptyCount = actual.Count(s => String.Equals(s.Subject, subject, StringComparison.CurrentCultureIgnoreCase));
+          Assert.Fail("{0} found in {1} ({2})", emptyCount, yrq.FriendlyName, yrq);
 			  }
 			}
 		}
@@ -157,7 +158,7 @@ namespace Ctc.Ods.Tests.RepositoryTests
 		[TestMethod]
 		public void GetSubjectsWithYrq_Modality_Online_Success()
 		{
-			using (OdsRepository repo = new OdsRepository())
+			using (IOdsRepository repo = new OdsRepository())
 			{
 				YearQuarter yearQuarter = YearQuarter.FromString("B122");
 				IList<ISectionFacet> facets = new List<ISectionFacet>();

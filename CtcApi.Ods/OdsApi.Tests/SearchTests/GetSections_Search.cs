@@ -80,7 +80,7 @@ namespace Ctc.Ods.Tests.SearchTests
 		[TestMethod]
 		public void GetSections_Fall2011_OnCampus_WideTimeRange()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				TimeSpan startTime = new TimeSpan(2, 55, 0);
 				TimeSpan endTime = new TimeSpan(22, 55, 0);

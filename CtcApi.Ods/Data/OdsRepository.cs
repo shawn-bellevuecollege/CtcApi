@@ -22,8 +22,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Web;
-using System.Web.Caching;
 using Common.Logging;
 using Ctc.Ods.Config;
 using Ctc.Ods.Customizations;
@@ -36,16 +34,15 @@ namespace Ctc.Ods.Data
 	/// <summary>
 	/// Provides acccess to ODS data
 	/// </summary>
-	public class OdsRepository : IDisposable
+	public class OdsRepository : IOdsRepository
 	{
-    private ILog _log = LogManager.GetCurrentClassLogger();
+    private readonly ILog _log = LogManager.GetCurrentClassLogger();
 
 		OdsContext _context;
 		private YearQuarter _currentYearQuarter;
 		private ApiSettings _settings;
-		private HttpContextBase _httpContext;
-		private string _commonCourseChar;
-	  private ApplicationContext _appContext;
+	  private readonly string _commonCourseChar;
+	  private readonly ApplicationContext _appContext;
 
 	  #region Properties
 		/// <summary>
@@ -101,7 +98,7 @@ namespace Ctc.Ods.Data
 		  _appContext = appContext;
 		  Debug.Print("==> instantiating OdsRepository()...");
 			_settings = ConfigurationManager.GetSection(ApiSettings.SectionName) as ApiSettings;
-			_commonCourseChar = Settings.RegexPatterns.CommonCourseChar;;
+			_commonCourseChar = Settings.RegexPatterns.CommonCourseChar;
 		}
 
 		/// <summary>
@@ -169,8 +166,8 @@ namespace Ctc.Ods.Data
 			DateTime registrationDate = today.Add(new TimeSpan(Settings.YearQuarter.RegistrationLeadDays, 0, 0, 0));
 
 			IQueryable<YearQuarterEntity> quarters = from y in _DbContext.YearQuarters
-																													join r in _DbContext.WebRegistrationSettings on y.YearQuarterID equals r.YearQuarterID into y_r
-																													from r in y_r.DefaultIfEmpty()
+																													join r in _DbContext.WebRegistrationSettings on y.YearQuarterID equals r.YearQuarterID into yr
+																													from r in yr.DefaultIfEmpty()
 																													where (r.FirstRegistrationDate != null && r.FirstRegistrationDate <= registrationDate
 																														// include the quarter we're currently in, even if registration is no longer open for it
 																														 || y.LastClassDay <= today)
@@ -959,16 +956,7 @@ namespace Ctc.Ods.Data
 			{
 				if (_context != null)
 				{
-					if (_httpContext != null)
-					{
-						// The calling app is most likely caching a _context object, so don't dispose it
-						// (even if we're wrong, nulling the variable should trigger garbage collection)
-						_context = null;
-					}
-					else
-					{
-						_context.Dispose();
-					}
+					_context.Dispose();
 				}
 			}
 		}
@@ -1099,9 +1087,9 @@ namespace Ctc.Ods.Data
 			/// Adds a collection of <see cref="ISectionFacet"/> objects' expressions
 			/// </summary>
 			/// <param name="facets"></param>
-			public void Add(IEnumerable<ISectionFacet> facets)
+			public void Add(IList<ISectionFacet> facets)
 			{
-				if (facets != null && facets.Count() > 0)
+				if (facets != null && facets.Any())
 				{
 					foreach (ISectionFacet facet in facets)
 					{

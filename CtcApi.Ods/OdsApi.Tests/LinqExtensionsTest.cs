@@ -74,7 +74,7 @@ namespace Ctc.Ods.Tests
 		[TestMethod]
 		public void CompoundWhere_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				// TODO:
 			}

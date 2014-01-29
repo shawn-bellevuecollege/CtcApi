@@ -114,7 +114,7 @@ namespace Ctc.Ods.Tests
 //		[Ignore]	// NOTE: Proper implementation requires restructuring the GetCourses() calls. See Task #16.
 		public void CourseFootnotes_Success()
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<Course> courses = repository.GetCourses();
 //				IList<Course> courses = repository.GetCourses("engl");

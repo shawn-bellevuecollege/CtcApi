@@ -45,7 +45,7 @@ namespace Ctc.Ods.Tests
 		/// <returns></returns>
 		static public IList<Section> GetSectionsWithFilter(ISectionFacet facet, bool includeQuarterFilter = true)
 		{
-			using (OdsRepository repository = new OdsRepository())
+			using (IOdsRepository repository = new OdsRepository())
 			{
 				IList<ISectionFacet> facets = GetFacets(facet, includeQuarterFilter);
 

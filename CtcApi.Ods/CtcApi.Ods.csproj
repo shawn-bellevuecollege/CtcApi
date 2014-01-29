@@ -88,6 +88,10 @@
   <ItemGroup>
     <Compile Include="DataFacets\IDataFacet.cs" />
     <Compile Include="Customizations\IOdsDataMapper.cs" />
+    <Compile Include="Data\ICourseRepository.cs" />
+    <Compile Include="Data\IOdsRepository.cs" />
+    <Compile Include="Data\ISectionRepository.cs" />
+    <Compile Include="Data\IYearQuarterRepository.cs" />
     <Compile Include="Types\IRichDataObject.cs" />
     <Compile Include="DataFacets\AvailabilityFacet.cs" />
     <Compile Include="CommonExtensions.cs" />
@@ -209,7 +213,7 @@
   </Target>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildAction="ReBuild" BuildVersion_ConfigurationName="Release" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_ConfigurationName="Release" BuildVersion_BuildAction="ReBuild" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
