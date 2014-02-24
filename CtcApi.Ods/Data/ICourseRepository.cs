@@ -19,7 +19,7 @@ using Ctc.Ods.Types;
 namespace Ctc.Ods.Data
 {
   /// <summary>
-  /// 
+  /// Provides acccess to Course data from the ODS
   /// </summary>
   public interface ICourseRepository
   {
@@ -30,7 +30,7 @@ namespace Ctc.Ods.Data
     /// <remarks>
     ///		<example>
     ///			<code type="cs">
-    /// using (OdsRepository repository = new OdsRepository())
+    /// using (ICourseRepository repository = new OdsRepository())
     ///	{
     ///		IEnumerable&lt;Course&gt; courses = repository.GetCourses();
     /// }
@@ -68,7 +68,7 @@ namespace Ctc.Ods.Data
     /// <remarks>
     ///		<example>
     ///			<code type="cs">
-    ///		using (OdsRepository repository = new OdsRepository())
+    ///		using (ICourseRepository repository = new OdsRepository())
     ///		{
     ///			IList&lt;Course&gt; courses = repository.GetCourses(CourseID.FromString("ART 101"));
     ///		}
@@ -113,7 +113,6 @@ namespace Ctc.Ods.Data
     ///	<param name="yrq"></param>
     ///<param name="facetOptions"></param>
     ///<returns></returns>
-    ///	<exception cref="NotImplementedException"></exception>
     IList<CoursePrefix> GetCourseSubjects(YearQuarter yrq, IList<ISectionFacet> facetOptions = null);
   }
 }

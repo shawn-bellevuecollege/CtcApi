@@ -20,7 +20,7 @@ using Ctc.Ods.Types;
 namespace Ctc.Ods.Data
 {
   /// <summary>
-  /// 
+  /// Provides acccess to YRQ data from the ODS
   /// </summary>
   public interface IYearQuarterRepository
   {

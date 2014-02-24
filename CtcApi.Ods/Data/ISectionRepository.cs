@@ -19,7 +19,7 @@ using Ctc.Ods.Types;
 namespace Ctc.Ods.Data
 {
   /// <summary>
-  /// 
+  /// Provides acccess to Section data from the ODS
   /// </summary>
   public interface ISectionRepository
   {

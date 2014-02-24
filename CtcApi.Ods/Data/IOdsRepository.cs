@@ -19,8 +19,13 @@ using System;
 namespace Ctc.Ods.Data
 {
   /// <summary>
-  /// 
+  /// Provides acccess to ODS data
   /// </summary>
+  /// <remarks>
+  /// This interface combines all the Type-specific interfaces having to do with
+  /// ODS data, for contexts where the code needs to access multiple types of
+  /// information.
+  /// </remarks>
   public interface IOdsRepository : IYearQuarterRepository, ICourseRepository, ISectionRepository, IDisposable
   {
     /// <summary>
