@@ -49,10 +49,11 @@ namespace Test.CtcApi
     //}
     //
     //Use TestInitialize to run code before running each test
-    //[TestInitialize()]
-    //public void MyTestInitialize()
-    //{
-    //}
+    [TestInitialize()]
+    public void MyTestInitialize()
+    {
+      ConfigurationManager.AppSettings["CurrentDate"] = "";
+    }
     //
     //Use TestCleanup to run code after each test has run
     //[TestCleanup()]
